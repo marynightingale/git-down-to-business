@@ -1,0 +1,7 @@
+#!/bin/bash
+set -e
+
+branch=$(git common choose_branch) 
+git checkout $branch
+
+git common say_goodbay

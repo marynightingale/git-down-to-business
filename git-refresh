@@ -1,0 +1,22 @@
+#!/bin/bash
+set -e
+
+echo "Checking status"
+if [[ $(git status -s) ]]; then
+    echo "Can't refresh a branch with changes ⛔️"
+    exit 1
+fi
+
+echo "Checking out master"
+git checkout master
+
+echo "Pulling new changes"
+git pull
+
+echo "Returning to branch"
+git checkout -
+
+echo "Rebasing master"
+git rebase master
+
+git common say_goodbay

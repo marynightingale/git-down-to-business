@@ -1,0 +1,9 @@
+#!/bin/bash
+set -e
+
+base_branch=$(git common choose_branch) 
+
+echo "rebasing over $base_branch"
+git rebase -i $base_branch
+
+git common say_goodbay

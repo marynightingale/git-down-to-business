@@ -1,0 +1,20 @@
+#!/bin/bash
+set -e
+
+say_goodbay () {
+	echo "Yay all done! 🎉"
+}
+
+choose_branch () {
+	PS3="Choose branch: "
+	allrefs=( $(git for-each-ref --sort=-committerdate --format="%(refname:lstrip=2)" refs/heads/) )
+	options=( "master" ${allrefs[@]/master/} )
+
+	select branch in "${options[@]:0:10}";
+	do
+	    echo $branch
+	    break;
+	done
+}
+
+eval $1
